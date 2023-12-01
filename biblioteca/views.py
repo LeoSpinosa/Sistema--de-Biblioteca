@@ -97,8 +97,7 @@ def return_book(request, id):
     book.qtd_books += 1
     book.save()
 
-    books = RentedBooks.objects.filter(user_id=request.user.id, book_id = id, returned=False)[0]
-
+    books = RentedBooks.objects.get(user_id=request.user.id, book_id = id, returned=False)
     books.returned = True
     books.save()
 
